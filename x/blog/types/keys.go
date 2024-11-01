@@ -16,7 +16,7 @@ const (
 	// MemStoreKey defines the in-memory store key
 	MemStoreKey = "mem_blog"
 	// keep track of the index of posts
-	PostKey = "Post/value/"
+	PostKey      = "Post/value/"
 	PostCountKey = "Post/count/"
 )
 
