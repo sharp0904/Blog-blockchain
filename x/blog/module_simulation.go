@@ -24,11 +24,7 @@ var (
 )
 
 const (
-	opWeightMsgCreatePost = "op_weight_msg_create_post"
-	// TODO: Determine the simulation weight value
-	defaultWeightMsgCreatePost int = 100
-
-	// this line is used by starport scaffolding # simapp/module/const
+    // this line is used by starport scaffolding # simapp/module/const
 )
 
 // GenerateGenesisState creates a randomized GenState of the module
@@ -38,7 +34,7 @@ func (AppModule) GenerateGenesisState(simState *module.SimulationState) {
 		accs[i] = acc.Address.String()
 	}
 	blogGenesis := types.GenesisState{
-		Params: types.DefaultParams(),
+		Params:	types.DefaultParams(),
 		// this line is used by starport scaffolding # simapp/module/genesisState
 	}
 	simState.GenState[types.ModuleName] = simState.Cdc.MustMarshalJSON(&blogGenesis)
@@ -51,8 +47,9 @@ func (AppModule) ProposalContents(_ module.SimulationState) []simtypes.WeightedP
 
 // RandomizedParams creates randomized  param changes for the simulator
 func (am AppModule) RandomizedParams(_ *rand.Rand) []simtypes.ParamChange {
-
-	return []simtypes.ParamChange{}
+	
+	return []simtypes.ParamChange{
+	}
 }
 
 // RegisterStoreDecoder registers a decoder
@@ -61,17 +58,6 @@ func (am AppModule) RegisterStoreDecoder(_ sdk.StoreDecoderRegistry) {}
 // WeightedOperations returns the all the gov module operations with their respective weights.
 func (am AppModule) WeightedOperations(simState module.SimulationState) []simtypes.WeightedOperation {
 	operations := make([]simtypes.WeightedOperation, 0)
-
-	var weightMsgCreatePost int
-	simState.AppParams.GetOrGenerate(simState.Cdc, opWeightMsgCreatePost, &weightMsgCreatePost, nil,
-		func(_ *rand.Rand) {
-			weightMsgCreatePost = defaultWeightMsgCreatePost
-		},
-	)
-	operations = append(operations, simulation.NewWeightedOperation(
-		weightMsgCreatePost,
-		blogsimulation.SimulateMsgCreatePost(am.accountKeeper, am.bankKeeper, am.keeper),
-	))
 
 	// this line is used by starport scaffolding # simapp/module/operation
 

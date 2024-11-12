@@ -3,10 +3,10 @@ package cli
 import (
 	"context"
 
-	"blog/x/blog/types"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/flags"
 	"github.com/spf13/cobra"
+	"blog/x/blog/types"
 )
 
 func CmdQueryParams() *cobra.Command {

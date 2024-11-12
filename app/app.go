@@ -101,9 +101,9 @@ import (
 	"blog/docs"
 
 	blogmodule "blog/x/blog"
-	blogmodulekeeper "blog/x/blog/keeper"
-	blogmoduletypes "blog/x/blog/types"
-	// this line is used by starport scaffolding # stargate/app/moduleImport
+		blogmodulekeeper "blog/x/blog/keeper"
+		blogmoduletypes "blog/x/blog/types"
+// this line is used by starport scaffolding # stargate/app/moduleImport
 )
 
 const (
@@ -158,7 +158,7 @@ var (
 		vesting.AppModuleBasic{},
 		monitoringp.AppModuleBasic{},
 		blogmodule.AppModuleBasic{},
-		// this line is used by starport scaffolding # stargate/app/moduleBasic
+// this line is used by starport scaffolding # stargate/app/moduleBasic
 	)
 
 	// module account permissions
@@ -230,8 +230,9 @@ type App struct {
 	ScopedTransferKeeper   capabilitykeeper.ScopedKeeper
 	ScopedMonitoringKeeper capabilitykeeper.ScopedKeeper
 
-	BlogKeeper blogmodulekeeper.Keeper
-	// this line is used by starport scaffolding # stargate/app/keeperDeclaration
+	
+		BlogKeeper blogmodulekeeper.Keeper
+// this line is used by starport scaffolding # stargate/app/keeperDeclaration
 
 	// mm is the module manager
 	mm *module.Manager
@@ -268,7 +269,7 @@ func New(
 		govtypes.StoreKey, paramstypes.StoreKey, ibchost.StoreKey, upgradetypes.StoreKey, feegrant.StoreKey,
 		evidencetypes.StoreKey, ibctransfertypes.StoreKey, capabilitytypes.StoreKey, monitoringptypes.StoreKey,
 		blogmoduletypes.StoreKey,
-		// this line is used by starport scaffolding # stargate/app/storeKey
+// this line is used by starport scaffolding # stargate/app/storeKey
 	)
 	tkeys := sdk.NewTransientStoreKeys(paramstypes.TStoreKey)
 	memKeys := sdk.NewMemoryStoreKeys(capabilitytypes.MemStoreKey)
@@ -357,10 +358,10 @@ func New(
 		app.IBCKeeper.ChannelKeeper, app.IBCKeeper.ChannelKeeper, &app.IBCKeeper.PortKeeper,
 		app.AccountKeeper, app.BankKeeper, scopedTransferKeeper,
 	)
-	var (
-		transferModule    = transfer.NewAppModule(app.TransferKeeper)
-		transferIBCModule = transfer.NewIBCModule(app.TransferKeeper)
-	)
+    var (
+        transferModule    = transfer.NewAppModule(app.TransferKeeper)
+        transferIBCModule = transfer.NewIBCModule(app.TransferKeeper)
+    )
 
 	// Create evidence Keeper for to register the IBC light client misbehaviour evidence route
 	evidenceKeeper := evidencekeeper.NewKeeper(
@@ -389,15 +390,17 @@ func New(
 	)
 	monitoringModule := monitoringp.NewAppModule(appCodec, app.MonitoringKeeper)
 
-	app.BlogKeeper = *blogmodulekeeper.NewKeeper(
-		appCodec,
-		keys[blogmoduletypes.StoreKey],
-		keys[blogmoduletypes.MemStoreKey],
-		app.GetSubspace(blogmoduletypes.ModuleName),
-	)
-	blogModule := blogmodule.NewAppModule(appCodec, app.BlogKeeper, app.AccountKeeper, app.BankKeeper)
+	
+		app.BlogKeeper = *blogmodulekeeper.NewKeeper(
+			appCodec,
+			keys[blogmoduletypes.StoreKey],
+			keys[blogmoduletypes.MemStoreKey],
+			app.GetSubspace(blogmoduletypes.ModuleName),
+			
+			)
+		blogModule := blogmodule.NewAppModule(appCodec, app.BlogKeeper, app.AccountKeeper, app.BankKeeper)
 
-	// this line is used by starport scaffolding # stargate/app/keeperDefinition
+		// this line is used by starport scaffolding # stargate/app/keeperDefinition
 
 	// Create static IBC router, add transfer route, then set and seal it
 	ibcRouter := ibcporttypes.NewRouter()
@@ -439,7 +442,7 @@ func New(
 		transferModule,
 		monitoringModule,
 		blogModule,
-		// this line is used by starport scaffolding # stargate/app/appModule
+// this line is used by starport scaffolding # stargate/app/appModule
 	)
 
 	// During begin block slashing happens after distr.BeginBlocker so that
@@ -467,7 +470,7 @@ func New(
 		paramstypes.ModuleName,
 		monitoringptypes.ModuleName,
 		blogmoduletypes.ModuleName,
-		// this line is used by starport scaffolding # stargate/app/beginBlockers
+// this line is used by starport scaffolding # stargate/app/beginBlockers
 	)
 
 	app.mm.SetOrderEndBlockers(
@@ -491,7 +494,7 @@ func New(
 		ibctransfertypes.ModuleName,
 		monitoringptypes.ModuleName,
 		blogmoduletypes.ModuleName,
-		// this line is used by starport scaffolding # stargate/app/endBlockers
+// this line is used by starport scaffolding # stargate/app/endBlockers
 	)
 
 	// NOTE: The genutils module must occur after staking so that pools are
@@ -520,7 +523,7 @@ func New(
 		feegrant.ModuleName,
 		monitoringptypes.ModuleName,
 		blogmoduletypes.ModuleName,
-		// this line is used by starport scaffolding # stargate/app/initGenesis
+// this line is used by starport scaffolding # stargate/app/initGenesis
 	)
 
 	app.mm.RegisterInvariants(&app.CrisisKeeper)
@@ -545,7 +548,7 @@ func New(
 		transferModule,
 		monitoringModule,
 		blogModule,
-		// this line is used by starport scaffolding # stargate/app/appModule
+// this line is used by starport scaffolding # stargate/app/appModule
 	)
 	app.sm.RegisterStoreDecoders()
 
@@ -735,7 +738,7 @@ func initParamsKeeper(appCodec codec.BinaryCodec, legacyAmino *codec.LegacyAmino
 	paramsKeeper.Subspace(ibchost.ModuleName)
 	paramsKeeper.Subspace(monitoringptypes.ModuleName)
 	paramsKeeper.Subspace(blogmoduletypes.ModuleName)
-	// this line is used by starport scaffolding # stargate/app/paramSubspace
+// this line is used by starport scaffolding # stargate/app/paramSubspace
 
 	return paramsKeeper
 }
