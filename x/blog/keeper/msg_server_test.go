@@ -4,10 +4,10 @@ import (
 	"context"
 	"testing"
 
+	keepertest "blog/testutil/keeper"
+	"blog/x/blog/keeper"
+	"blog/x/blog/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-    "blog/x/blog/types"
-    "blog/x/blog/keeper"
-    keepertest "blog/testutil/keeper"
 )
 
 func setupMsgServer(t testing.TB) (types.MsgServer, context.Context) {
