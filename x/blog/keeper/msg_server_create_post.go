@@ -9,8 +9,10 @@ import (
 )
 
 func (k msgServer) CreatePost(goCtx context.Context, msg *types.MsgCreatePost) (*types.MsgCreatePostResponse, error) {
+	//Get the context
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
+	//Create variable of type Post
 	var post = types.Post{
 		Creator: msg.Creator,
 		Title:   msg.Title,
