@@ -19,6 +19,8 @@ export interface BlogMsgCreatePostResponse {
   id?: string;
 }
 
+export type BlogMsgDeleteCommentResponse = object;
+
 export interface BlogPost {
   creator?: string;
 
@@ -26,6 +28,9 @@ export interface BlogPost {
   id?: string;
   title?: string;
   body?: string;
+
+  /** @format int64 */
+  createdAt?: string;
 }
 
 export interface BlogQueryAllCommentResponse {

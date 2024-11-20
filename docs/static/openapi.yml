@@ -252,6 +252,9 @@ paths:
                       type: string
                     body:
                       type: string
+                    createdAt:
+                      type: string
+                      format: int64
                 title: Returning a list of Posts
               pagination:
                 type: object
@@ -29841,6 +29844,8 @@ definitions:
       id:
         type: string
         format: uint64
+  blog.blog.MsgDeleteCommentResponse:
+    type: object
   blog.blog.Params:
     type: object
     description: Params defines the parameters for the module.
@@ -29856,6 +29861,9 @@ definitions:
         type: string
       body:
         type: string
+      createdAt:
+        type: string
+        format: int64
   blog.blog.QueryAllCommentResponse:
     type: object
     properties:
@@ -29949,6 +29957,9 @@ definitions:
               type: string
             body:
               type: string
+            createdAt:
+              type: string
+              format: int64
         title: Returning a list of Posts
       pagination:
         type: object
